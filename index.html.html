@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmad Rafi Razan — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#131310;
+    --panel:#1b1b15;
+    --panel-2:#232319;
+    --paper:#ECE6D8;
+    --paper-dim:#a9a290;
+    --brass:#c9a15a;
+    --brass-soft:rgba(201,161,90,0.35);
+    --line:rgba(236,230,216,0.12);
+    --ochre:#c99a3a;
+    --blue:#5c7c94;
+    --moss:#5c6e4f;
+    --brick:#a24b3f;
+    --steel:#59636c;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(201,161,90,0.08), transparent 45%),
+      radial-gradient(ellipse at 90% 10%, rgba(92,124,148,0.06), transparent 40%),
+      var(--ink);
+    color:var(--paper);
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--brass); color:var(--ink);}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media(max-width:720px){.wrap{padding:0 20px;}}
+
+  /* ---------- NAV ---------- */
+  nav.topnav{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    background:linear-gradient(to bottom, rgba(19,19,16,0.92), transparent);
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  }
+  nav.topnav .brand{color:var(--brass);}
+  nav.topnav ul{list-style:none; display:flex; gap:26px; margin:0; padding:0;}
+  nav.topnav a{text-decoration:none; color:var(--paper-dim); transition:color .25s;}
+  nav.topnav a:hover{color:var(--paper);}
+  @media(max-width:720px){ nav.topnav ul{display:none;} }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative; min-height:100svh; display:flex; align-items:center;
+    padding:120px 0 80px; overflow:hidden;
+  }
+  .hero-inner{ position:relative; z-index:2; }
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); margin:0 0 18px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:500; font-style:normal;
+    font-size:clamp(2.8rem, 8vw, 6.4rem); line-height:0.98; letter-spacing:-0.01em;
+    margin:0 0 20px; color:var(--paper);
+  }
+  .hero-tagline{
+    font-size:clamp(1rem,2vw,1.25rem); color:var(--paper-dim); max-width:520px; line-height:1.6;
+    margin:0 0 36px;
+  }
+  .hero-loc{font-family:'Space Mono',monospace; font-size:12px; color:var(--brass); letter-spacing:.08em;}
+
+  /* signature chip mosaic */
+  .chip-field{
+    position:absolute; right:-40px; top:50%; transform:translateY(-50%);
+    width:520px; height:520px; z-index:1;
+  }
+  @media(max-width:1000px){ .chip-field{ position:relative; right:auto; top:auto; transform:none; width:100%; height:auto; margin-top:40px; display:flex; flex-wrap:wrap; gap:14px; } }
+  .chip{
+    position:absolute; border-radius:6px; cursor:pointer;
+    display:flex; align-items:flex-end; padding:16px;
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; color:rgba(19,19,16,0.75);
+    text-transform:uppercase; font-weight:700;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.6);
+  }
+  .chip:hover{transform:translateY(-8px) scale(1.03);}
+  @media(max-width:1000px){ .chip{ position:relative !important; inset:auto !important; width:130px !important; height:130px !important; } }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{ padding:110px 0; border-top:1px solid var(--line); position:relative; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; flex-wrap:wrap; }
+  h2.section-title{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.8rem,4vw,2.6rem); margin:6px 0 0; color:var(--paper);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:64px; align-items:start; }
+  @media(max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .bio{ font-size:1.15rem; line-height:1.75; color:var(--paper); font-weight:400; }
+  .fact-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; font-size:.95rem; color:var(--paper-dim); line-height:1.8;
+  }
+  .fact-card b{color:var(--paper); font-weight:600;}
+
+  /* ---------- TOOLS ---------- */
+  .tools-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  .tool-badge{
+    display:flex; align-items:center; gap:10px;
+    border:1px solid var(--brass-soft); border-radius:40px;
+    padding:10px 18px 10px 10px; background:var(--panel);
+    font-size:.9rem; font-weight:600; position:relative;
+  }
+  .tool-badge .ico{
+    width:30px; height:30px; border-radius:6px; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:11px; font-weight:700; color:var(--ink);
+  }
+  .tool-del{ position:absolute; top:-8px; right:-8px; background:var(--brick); color:#fff; border:none; border-radius:50%;
+    width:20px; height:20px; font-size:12px; line-height:1; cursor:pointer; display:none; }
+  .edit-mode .tool-del{display:block;}
+  .add-tool-btn{
+    display:none; align-items:center; gap:8px; border:1px dashed var(--brass-soft); border-radius:40px; padding:10px 18px;
+    background:transparent; color:var(--brass); font-family:'Manrope'; font-weight:600; cursor:pointer; font-size:.9rem;
+  }
+  .edit-mode .add-tool-btn{display:inline-flex;}
+
+  /* ---------- GRIDS (projects/gallery) ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:26px; }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; position:relative; display:flex; flex-direction:column;
+    transition:border-color .3s;
+  }
+  .card:hover{ border-color:var(--brass-soft); }
+  .card-top{ height:8px; }
+  .card-media{
+    position:relative; aspect-ratio:4/3; background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .card-media img{ width:100%; height:100%; object-fit:cover; }
+  .card-media .placeholder-code{
+    font-family:'Space Mono',monospace; font-size:2.2rem; letter-spacing:.05em; color:var(--paper-dim); opacity:.35;
+  }
+  .card-body{ padding:22px 22px 24px; flex:1; display:flex; flex-direction:column; gap:8px; }
+  .card-index{ font-family:'Space Mono',monospace; font-size:11px; color:var(--brass); letter-spacing:.1em; }
+  .card-title{ font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; margin:0; }
+  .card-desc{ font-size:.9rem; color:var(--paper-dim); line-height:1.6; margin:0; }
+  .card-link{ margin-top:auto; padding-top:10px; font-size:.82rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--brass); text-decoration:none; }
+  .card-link.empty{ color:var(--paper-dim); font-style:italic; text-transform:none; font-weight:400; }
+
+  .upload-overlay{
+    position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+    background:rgba(19,19,16,0.55); backdrop-filter:blur(2px);
+  }
+  .edit-mode .upload-overlay{display:flex;}
+  .upload-btn{
+    background:var(--brass); color:var(--ink); border:none; padding:9px 16px; border-radius:30px;
+    font-weight:700; font-size:.78rem; cursor:pointer; letter-spacing:.03em;
+  }
+  .card-del{
+    position:absolute; top:10px; right:10px; z-index:5; background:var(--brick); color:#fff; border:none;
+    width:26px; height:26px; border-radius:50%; cursor:pointer; display:none; font-size:14px;
+  }
+  .edit-mode .card-del{display:block;}
+
+  .add-card{
+    display:none; align-items:center; justify-content:center; min-height:220px;
+    border:1px dashed var(--brass-soft); border-radius:var(--radius); background:transparent;
+    color:var(--brass); font-weight:700; cursor:pointer; flex-direction:column; gap:8px; font-size:.9rem;
+  }
+  .edit-mode .add-card{display:flex;}
+
+  .empty-note{ color:var(--paper-dim); font-style:italic; font-size:.95rem; }
+
+  [contenteditable="true"]{ outline: 1px dashed var(--brass-soft); border-radius:2px; padding:2px 4px; margin:-2px -4px; }
+  [contenteditable="true"]:focus{ outline:1px solid var(--brass); background:rgba(201,161,90,0.06); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-cta{ font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:clamp(2rem,5vw,3.2rem); margin:0 0 40px; max-width:700px; }
+  .contact-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+  .contact-list li{ border-top:1px solid var(--line); padding:20px 0; display:flex; justify-content:space-between; align-items:center; }
+  .contact-list li:last-child{ border-bottom:1px solid var(--line); }
+  .contact-label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--paper-dim); }
+  .contact-val{ font-size:1.15rem; font-weight:600; }
+  .contact-val a{ text-decoration:none; border-bottom:1px solid transparent; transition:border-color .25s; }
+  .contact-val a:hover{ border-color:var(--brass); }
+
+  footer{ padding:36px 0 50px; text-align:center; font-family:'Space Mono',monospace; font-size:11px; color:var(--paper-dim); letter-spacing:.08em; }
+
+  /* ---------- ADMIN LOCK ---------- */
+  .lock-btn{
+    position:fixed; bottom:24px; right:24px; z-index:50;
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--brass-soft);
+    background:var(--panel); color:var(--brass); cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-size:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  }
+  .edit-banner{
+    position:fixed; top:0; left:0; right:0; z-index:45; background:var(--brass); color:var(--ink);
+    text-align:center; padding:8px; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; display:none;
+  }
+  body.edit-mode .edit-banner{display:block;}
+  body.edit-mode nav.topnav{margin-top:32px;}
+  .edit-banner button{ background:none; border:none; text-decoration:underline; color:var(--ink); font-family:inherit; font-size:inherit; cursor:pointer; margin-left:14px; }
+
+  .modal-back{
+    position:fixed; inset:0; background:rgba(10,10,8,0.75); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+  }
+  .modal-back.show{display:flex;}
+  .modal{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:32px; width:100%; max-width:360px;
+  }
+  .modal h3{ font-family:'Fraunces',serif; font-weight:600; margin:0 0 6px; font-size:1.3rem;}
+  .modal p{ color:var(--paper-dim); font-size:.85rem; margin:0 0 20px; line-height:1.5;}
+  .modal input{
+    width:100%; padding:11px 14px; border-radius:4px; border:1px solid var(--line); background:var(--panel-2);
+    color:var(--paper); font-family:'Manrope'; margin-bottom:12px; font-size:.95rem;
+  }
+  .modal input:focus{ outline:1px solid var(--brass); }
+  .modal-actions{ display:flex; gap:10px; margin-top:6px; }
+  .btn{
+    flex:1; padding:11px 14px; border-radius:30px; border:none; cursor:pointer; font-weight:700; font-size:.85rem;
+    font-family:'Manrope';
+  }
+  .btn-primary{ background:var(--brass); color:var(--ink); }
+  .btn-ghost{ background:transparent; color:var(--paper-dim); border:1px solid var(--line); }
+  .modal-error{ color:var(--brick); font-size:.8rem; margin:-6px 0 12px; display:none; }
+  .modal-note{ font-size:.78rem; color:var(--paper-dim); margin-top:14px; border-top:1px solid var(--line); padding-top:12px; line-height:1.5;}
+  .toast{
+    position:fixed; bottom:80px; right:24px; background:var(--brass); color:var(--ink); padding:10px 18px;
+    border-radius:30px; font-size:.82rem; font-weight:700; z-index:60; opacity:0; transform:translateY(10px);
+    transition:all .35s; pointer-events:none;
+  }
+  .toast.show{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="edit-banner">Mode edit aktif — perubahan tersimpan otomatis <button id="btnLogout">Keluar</button> · <button id="btnChangePass">Ubah sandi</button></div>
+
+<nav class="topnav">
+  <span class="brand">A. RAFI RAZAN</span>
+  <ul>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#tools">Perangkat</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#design">Desain</a></li>
+    <li><a href="#product">Produk</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Portofolio Kreatif</p>
+    <h1 class="title">Ahmad Rafi<br>Razan</h1>
+    <p class="hero-tagline" id="heroTagline" contenteditable="false" data-path="profile.tagline">Graphic Designer & Content Creator — merangkai desain, video, dan strategi konten jadi satu identitas digital.</p>
+    <p class="hero-loc" contenteditable="false" data-path="profile.location">Bogor / Bekasi, Indonesia</p>
+  </div>
+  <div class="chip-field" id="chipField"></div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">01 — Profil</p><h2 class="section-title">Tentang</h2></div>
+    </div>
+    <div class="about-grid">
+      <p class="bio" id="bioText" contenteditable="false" data-path="profile.bio">Saya selalu tertarik untuk mengeksplorasi ilmu baru yang bisa membawa karya saya naik level. Alih-alih membatasi diri di satu keahlian, saya mendalami desain grafis, videografi, hingga konsep konten digital untuk memperkaya referensi visual. Portofolio ini adalah ruang pameran dari proses belajar dan proyek kreatif yang pernah saya kerjakan.</p>
+      <div class="fact-card">
+        <div><b>Fokus</b><br><span contenteditable="false" data-path="profile.focus">Digital Marketing · Creative Content · Visual Identity</span></div>
+        <br>
+        <div><b>Berbasis di</b><br>Bogor / Bekasi, Indonesia</div>
+        <br>
+        <div><b>Pendekatan</b><br>Lintas disiplin — desain grafis, videografi, dan strategi konten dalam satu alur kerja.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">02 — Perangkat</p><h2 class="section-title">Tools yang dipakai</h2></div>
+    </div>
+    <div class="tools-row" id="toolsRow"></div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">03 — Studi Kasus</p><h2 class="section-title">Identitas Digital & Video</h2></div>
+    </div>
+    <div class="grid" id="videoGrid"></div>
+  </div>
+</section>
+
+<section id="design">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">04 — Galeri</p><h2 class="section-title">Desain Sosial & Kampanye</h2></div>
+    </div>
+    <div class="grid" id="designGrid"></div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">05 — Galeri</p><h2 class="section-title">Produk & Branding</h2></div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">06 — Kontak</p>
+    <h2 class="contact-cta">Mari berkolaborasi pada proyek kreatif berikutnya.</h2>
+    <ul class="contact-list">
+      <li><span class="contact-label">Nama</span><span class="contact-val">Ahmad Rafi Razan</span></li>
+      <li><span class="contact-label">Telepon / WhatsApp</span><span class="contact-val"><a href="https://wa.me/6285782545847" target="_blank">0857-8254-5847</a></span></li>
+      <li><span class="contact-label">Email</span><span class="contact-val"><a href="mailto:ahmadrafirazan@gmail.com">ahmadrafirazan@gmail.com</a></span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> Ahmad Rafi Razan — Portofolio Kreatif</footer>
+
+<button class="lock-btn" id="lockBtn" title="Kelola konten">🔒</button>
+<div class="toast" id="toast"></div>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<input type="file" id="fileInput" accept="image/*" style="display:none">
+
+<script>
+(function(){
+  const ACCENTS = ['#c99a3a','#5c7c94','#5c6e4f','#a24b3f','#59636c'];
+
+  const DEFAULT_CONTENT = {
+    profile:{
+      tagline:"Graphic Designer & Content Creator — merangkai desain, video, dan strategi konten jadi satu identitas digital.",
+      bio:"Saya selalu tertarik untuk mengeksplorasi ilmu baru yang bisa membawa karya saya naik level. Alih-alih membatasi diri di satu keahlian, saya mendalami desain grafis, videografi, hingga konsep konten digital untuk memperkaya referensi visual. Portofolio ini adalah ruang pameran dari proses belajar dan proyek kreatif yang pernah saya kerjakan.",
+      location:"Bogor / Bekasi, Indonesia",
+      focus:"Digital Marketing · Creative Content · Visual Identity"
+    },
+    tools:[
+      {name:"Illustrator", code:"Ai"},
+      {name:"Photoshop", code:"Ps"},
+      {name:"Premiere Pro", code:"Pr"},
+      {name:"CapCut", code:"Cc"},
+      {name:"Canva", code:"Ca"}
+    ],
+    videoProjects:[
+      {title:"Garuda Jelajah Nusantara", desc:"Rangkaian video kreatif yang dirancang untuk memperkuat pesan dan identitas digital.", link:"", img:null},
+      {title:"DELCIO", desc:"Rangkaian video kreatif yang dirancang untuk memperkuat pesan dan identitas digital.", link:"", img:null},
+      {title:"SerbaSepeda", desc:"Rangkaian video kreatif yang dirancang untuk memperkuat pesan dan identitas digital.", link:"", img:null},
+      {title:"ABATI AQIQAH", desc:"Rangkaian video kreatif yang dirancang untuk memperkuat pesan dan identitas digital.", link:"", img:null},
+      {title:"AUTOMEKANIKA", desc:"Rangkaian video kreatif yang dirancang untuk memperkuat pesan dan identitas digital.", link:"", img:null}
+    ],
+    designGallery:[],
+    productGallery:[]
+  };
+
+  let content = JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+  let editMode = false;
+  let pendingUpload = null; // {list, index}
+  let pendingPassAction = null;
+
+  // Lapisan penyimpanan: pakai window.storage kalau tersedia (di dalam Claude),
+  // otomatis pindah ke localStorage kalau situs di-hosting sendiri (GitHub Pages, dll).
+  const hasClaudeStorage = (typeof window.storage !== 'undefined' && window.storage);
+  const Store = {
+    async get(key){
+      if(hasClaudeStorage){
+        try{ const r = await window.storage.get(key, true); return r ? r.value : null; }
+        catch(e){ return null; }
+      }
+      return localStorage.getItem(key);
+    },
+    async set(key, value){
+      if(hasClaudeStorage){
+        try{ await window.storage.set(key, value, true); return true; }
+        catch(e){ return false; }
+      }
+      try{ localStorage.setItem(key, value); return true; }
+      catch(e){ return false; }
+    }
+  };
+
+  function toast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2200);
+  }
+
+  function getByPath(obj, path){
+    return path.split('.').reduce((o,k)=> (o==null? o : o[k]), obj);
+  }
+  function setByPath(obj, path, value){
+    const parts = path.split('.');
+    let cur = obj;
+    for(let i=0;i<parts.length-1;i++){ cur = cur[parts[i]]; }
+    cur[parts[parts.length-1]] = value;
+  }
+
+  async function loadContent(){
+    try{
+      const raw = await Store.get('site-content');
+      if(raw){ content = JSON.parse(raw); }
+    }catch(e){ /* belum ada data, pakai default */ }
+  }
+  let saveTimer = null;
+  function saveContent(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(async ()=>{
+      const ok = await Store.set('site-content', JSON.stringify(content));
+      if(!ok){ toast('Gagal menyimpan perubahan'); }
+    }, 400);
+  }
+
+  async function getAuth(){
+    try{
+      const raw = await Store.get('site-auth');
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return null;
+  }
+  async function setAuth(hash){
+    await Store.set('site-auth', JSON.stringify({hash}));
+  }
+  function simpleHash(str){
+    let h = 0;
+    for(let i=0;i<str.length;i++){ h = (Math.imul(31,h) + str.charCodeAt(i))|0; }
+    return 'h'+h;
+  }
+
+  /* ---------- RENDER ---------- */
+  function renderChips(){
+    const field = document.getElementById('chipField');
+    field.innerHTML = '';
+    const positions = [
+      {top:'2%', left:'10%', w:150, h:150},
+      {top:'0%', left:'48%', w:130, h:130},
+      {top:'34%', left:'2%', w:120, h:120},
+      {top:'40%', left:'58%', w:170, h:170},
+      {top:'68%', left:'22%', w:140, h:140}
+    ];
+    content.videoProjects.slice(0,5).forEach((p,i)=>{
+      const pos = positions[i % positions.length];
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.style.background = ACCENTS[i % ACCENTS.length];
+      chip.style.top = pos.top; chip.style.left = pos.left;
+      chip.style.width = pos.w+'px'; chip.style.height = pos.h+'px';
+      const code = (p.title||'??').split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase();
+      chip.textContent = code;
+      chip.addEventListener('click', ()=>{
+        document.getElementById('video').scrollIntoView({behavior:'smooth'});
+      });
+      field.appendChild(chip);
+    });
+  }
+
+  function renderTools(){
+    const row = document.getElementById('toolsRow');
+    row.innerHTML = '';
+    content.tools.forEach((t,i)=>{
+      const el = document.createElement('div');
+      el.className = 'tool-badge';
+      el.innerHTML = `<span class="ico" style="background:${ACCENTS[i%ACCENTS.length]}">${t.code||'?'}</span><span contenteditable="false" data-path="tools.${i}.name">${t.name}</span><button class="tool-del" data-i="${i}">×</button>`;
+      row.appendChild(el);
+    });
+    const addBtn = document.createElement('button');
+    addBtn.className = 'add-tool-btn';
+    addBtn.textContent = '+ Tambah tool';
+    addBtn.addEventListener('click', ()=>{
+      const name = prompt('Nama tool (mis. After Effects):');
+      if(!name) return;
+      const code = prompt('Singkatan 2 huruf (mis. Ae):', name.slice(0,2)) || name.slice(0,2);
+      content.tools.push({name, code});
+      saveContent(); renderAll();
+    });
+    row.appendChild(addBtn);
+    row.querySelectorAll('.tool-del').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const i = +e.target.dataset.i;
+        if(confirm('Hapus tool ini?')){ content.tools.splice(i,1); saveContent(); renderAll(); }
+      });
+    });
+  }
+
+  function cardMedia(item, accent, code){
+    if(item.img){
+      return `<div class="card-media"><img src="${item.img}" alt=""></div>`;
+    }
+    return `<div class="card-media" style="background:linear-gradient(135deg, ${accent}22, transparent)"><span class="placeholder-code">${code}</span></div>`;
+  }
+
+  function renderGrid(gridId, list, listKey, opts){
+    const grid = document.getElementById(gridId);
+    grid.innerHTML = '';
+    list.forEach((item,i)=>{
+      const accent = ACCENTS[i % ACCENTS.length];
+      const code = (item.title||'??').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      const card = document.createElement('div');
+      card.className = 'card';
+      let linkHtml = '';
+      if(opts.showLink){
+        linkHtml = item.link
+          ? `<a class="card-link" href="${item.link}" target="_blank">Lihat video →</a>`
+          : `<span class="card-link empty" data-add-link="${i}">${editMode ? '+ Tambah tautan video' : 'Tautan belum ditambahkan'}</span>`;
+      }
+      card.innerHTML = `
+        <div class="card-top" style="background:${accent}"></div>
+        <button class="card-del" data-i="${i}">×</button>
+        ${cardMedia(item, accent, code)}
+        <div class="upload-overlay"><button class="upload-btn" data-i="${i}">Unggah gambar</button></div>
+        <div class="card-body">
+          <span class="card-index">${String(i+1).padStart(2,'0')}</span>
+          <h3 class="card-title" contenteditable="false" data-path="${listKey}.${i}.title">${item.title||''}</h3>
+          <p class="card-desc" contenteditable="false" data-path="${listKey}.${i}.desc">${item.desc||''}</p>
+          ${linkHtml}
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    if(list.length === 0){
+      const note = document.createElement('p');
+      note.className = 'empty-note';
+      note.textContent = editMode ? 'Belum ada karya. Klik "+ Tambah karya" untuk mengunggah.' : 'Karya akan segera ditambahkan di sini.';
+      grid.appendChild(note);
+    }
+
+    const addCard = document.createElement('div');
+    addCard.className = 'add-card';
+    addCard.innerHTML = '<span style="font-size:1.6rem">+</span><span>Tambah karya</span>';
+    addCard.addEventListener('click', ()=>{
+      const title = prompt('Judul karya:');
+      if(!title) return;
+      const desc = prompt('Deskripsi singkat:','') || '';
+      const newItem = {title, desc, img:null};
+      if(opts.showLink) newItem.link = '';
+      list.push(newItem);
+      saveContent(); renderAll();
+    });
+    grid.appendChild(addCard);
+
+    grid.querySelectorAll('.card-del').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const i = +e.currentTarget.dataset.i;
+        if(confirm('Hapus karya ini?')){ list.splice(i,1); saveContent(); renderAll(); }
+      });
+    });
+    grid.querySelectorAll('.upload-btn').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        pendingUpload = {list, index:+e.currentTarget.dataset.i};
+        document.getElementById('fileInput').click();
+      });
+    });
+    if(opts.showLink){
+      grid.querySelectorAll('[data-add-link]').forEach(el=>{
+        el.addEventListener('click', ()=>{
+          if(!editMode) return;
+          const i = +el.dataset.addLink;
+          const url = prompt('Tempel tautan video (YouTube/Drive/dll):', list[i].link||'');
+          if(url !== null){ list[i].link = url.trim(); saveContent(); renderAll(); }
+        });
+      });
+    }
+  }
+
+  function bindEditableFields(){
+    document.querySelectorAll('[data-path]').forEach(el=>{
+      el.contentEditable = editMode ? 'true' : 'false';
+      el.oninput = ()=>{
+        setByPath(content, el.dataset.path, el.textContent);
+        saveContent();
+      };
+    });
+  }
+
+  function renderAll(){
+    renderChips();
+    renderTools();
+    renderGrid('videoGrid', content.videoProjects, 'videoProjects', {showLink:true});
+    renderGrid('designGrid', content.designGallery, 'designGallery', {showLink:false});
+    renderGrid('productGrid', content.productGallery, 'productGallery', {showLink:false});
+    bindEditableFields();
+  }
+
+  document.getElementById('fileInput').addEventListener('change', (e)=>{
+    const file = e.target.files[0];
+    if(!file || !pendingUpload) return;
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      pendingUpload.list[pendingUpload.index].img = reader.result;
+      saveContent();
+      renderAll();
+      pendingUpload = null;
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  });
+
+  /* ---------- AUTH / MODALS ---------- */
+  const modalBack = document.getElementById('modalBack');
+  const modalBody = document.getElementById('modalBody');
+
+  function closeModal(){ modalBack.classList.remove('show'); modalBody.innerHTML=''; }
+
+  function showSetupModal(){
+    modalBody.innerHTML = `
+      <h3>Buat kata sandi</h3>
+      <p>Sandi ini mengunci mode edit situs. Ini kunci ringan sisi-klien untuk portofolio pribadi — bukan sistem keamanan tingkat tinggi, jadi jangan simpan data sensitif di baliknya.</p>
+      <input type="password" id="pw1" placeholder="Kata sandi baru">
+      <input type="password" id="pw2" placeholder="Ulangi kata sandi">
+      <p class="modal-error" id="setupErr"></p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelSetup">Batal</button>
+        <button class="btn btn-primary" id="confirmSetup">Simpan & masuk</button>
+      </div>
+    `;
+    modalBack.classList.add('show');
+    document.getElementById('cancelSetup').onclick = closeModal;
+    document.getElementById('confirmSetup').onclick = async ()=>{
+      const p1 = document.getElementById('pw1').value;
+      const p2 = document.getElementById('pw2').value;
+      const err = document.getElementById('setupErr');
+      if(p1.length < 4){ err.textContent = 'Minimal 4 karakter.'; err.style.display='block'; return; }
+      if(p1 !== p2){ err.textContent = 'Kata sandi tidak cocok.'; err.style.display='block'; return; }
+      await setAuth(simpleHash(p1));
+      closeModal();
+      enterEditMode();
+      toast('Sandi tersimpan. Mode edit aktif.');
+    };
+  }
+
+  function showLoginModal(){
+    modalBody.innerHTML = `
+      <h3>Masuk untuk mengedit</h3>
+      <p>Masukkan kata sandi untuk mengaktifkan mode edit.</p>
+      <input type="password" id="pwLogin" placeholder="Kata sandi">
+      <p class="modal-error" id="loginErr">Kata sandi salah.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelLogin">Batal</button>
+        <button class="btn btn-primary" id="confirmLogin">Masuk</button>
+      </div>
+    `;
+    modalBack.classList.add('show');
+    document.getElementById('cancelLogin').onclick = closeModal;
+    const doLogin = async ()=>{
+      const pw = document.getElementById('pwLogin').value;
+      const auth = await getAuth();
+      const err = document.getElementById('loginErr');
+      if(auth && auth.hash === simpleHash(pw)){
+        closeModal(); enterEditMode(); toast('Mode edit aktif.');
+      } else { err.style.display='block'; }
+    };
+    document.getElementById('confirmLogin').onclick = doLogin;
+    document.getElementById('pwLogin').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+  }
+
+  function showChangePassModal(){
+    modalBody.innerHTML = `
+      <h3>Ubah kata sandi</h3>
+      <input type="password" id="npw1" placeholder="Kata sandi baru">
+      <input type="password" id="npw2" placeholder="Ulangi kata sandi baru">
+      <p class="modal-error" id="chErr"></p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelCh">Batal</button>
+        <button class="btn btn-primary" id="confirmCh">Simpan</button>
+      </div>
+    `;
+    modalBack.classList.add('show');
+    document.getElementById('cancelCh').onclick = closeModal;
+    document.getElementById('confirmCh').onclick = async ()=>{
+      const p1 = document.getElementById('npw1').value;
+      const p2 = document.getElementById('npw2').value;
+      const err = document.getElementById('chErr');
+      if(p1.length<4){ err.textContent='Minimal 4 karakter.'; err.style.display='block'; return; }
+      if(p1!==p2){ err.textContent='Tidak cocok.'; err.style.display='block'; return; }
+      await setAuth(simpleHash(p1));
+      closeModal(); toast('Kata sandi diperbarui.');
+    };
+  }
+
+  function enterEditMode(){
+    editMode = true;
+    document.body.classList.add('edit-mode');
+    document.getElementById('lockBtn').textContent = '🔓';
+    renderAll();
+  }
+  function exitEditMode(){
+    editMode = false;
+    document.body.classList.remove('edit-mode');
+    document.getElementById('lockBtn').textContent = '🔒';
+    renderAll();
+  }
+
+  document.getElementById('lockBtn').addEventListener('click', async ()=>{
+    if(editMode){ exitEditMode(); return; }
+    const auth = await getAuth();
+    if(auth) showLoginModal(); else showSetupModal();
+  });
+  document.getElementById('btnLogout').addEventListener('click', exitEditMode);
+  document.getElementById('btnChangePass').addEventListener('click', showChangePassModal);
+  modalBack.addEventListener('click', (e)=>{ if(e.target === modalBack) closeModal(); });
+
+  /* ---------- INIT ---------- */
+  (async function init(){
+    document.getElementById('year').textContent = new Date().getFullYear();
+    await loadContent();
+    renderAll();
+  })();
+})();
+</script>
+</body>
+</html>
